@@ -3,6 +3,7 @@ import Header from './Header';
 import IsLoadingAndError from './IsLoadingAndError';
 import Footer from './Footer';
 import Login from './Login';
+import Profile from './Profile';
 import {
   BrowserRouter as Router,
   Switch,
@@ -22,6 +23,7 @@ class App extends React.Component {
               <Route exact path="/">
                 <Login />
                 {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
+                <Profile />
               </Route>
               {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
             </Switch>
