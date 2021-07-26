@@ -26,7 +26,15 @@ class App extends React.Component {
               <Route exact path="/">
                 {isAuthenticated ? <BestBooks /> : <Login />}
               </Route>
-              {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
+            </Switch>
+            <Switch>
+              <Route exact path="/profile">
+                {isAuthenticated ? <Profile /> : 
+                  <>
+                  <p>Log in to see profile</p>
+                  <Login />
+                  </>}
+              </Route>
             </Switch>
             <Footer />
           </IsLoadingAndError>
