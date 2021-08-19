@@ -35,6 +35,7 @@ class MyFavoriteBooks extends React.Component {
         </p>
       </Jumbotron>
       <div>
+        {this.state.books.map(book => (<p key={book._id}>{book.name} <br/> {book.description} </p>))}
       </div>
       </>
     );
