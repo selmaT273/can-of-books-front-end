@@ -12,11 +12,17 @@ class MyFavoriteBooks extends React.Component {
     }
   }
   componentDidMount = () => {
-    const { user } = this.props.auth0;
-    axios.get(`http://localhost:3000/books`,
-    {params: {
-      email: user.email,
-    }})
+    this.props.auth0.getIdTokenClaims()
+    .then(tokenRes => {
+      const jwt = tokenRes.__raw;
+      console.log(jwt);
+      const { user } = this.props.auth0;
+      return axios.get(`http://localhost:3000/books`,
+      {
+        params: {email: user.email},
+        headers: {"Authorization" : `Bearer ${jwt}`}
+      })
+    })
     .then(bookResponseData => {
       this.setState({
         books: bookResponseData.data[0].books,
