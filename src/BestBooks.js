@@ -35,7 +35,7 @@ class MyFavoriteBooks extends React.Component {
         </p>
       </Jumbotron>
       <div>
-        {this.state.books.map(book => (<p key={book._id}>{book.name} <br/> {book.description} </p>))}
+        {this.state.books.length > 0 ? this.state.books.map(book => (<p key={book._id}>{book.name} <br/> {book.description} </p>)) : <p>'No books to display'</p>}
       </div>
       </>
     );
