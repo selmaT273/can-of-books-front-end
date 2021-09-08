@@ -45,7 +45,7 @@ class MyFavoriteBooks extends React.Component {
         { this.state.books.length > 0 
           ? this.state.books.map(book => (
             <Carousel.Item key={book._id}>
-              <img src="https://via.placeholder.com/1100x500" />
+              <img src="https://via.placeholder.com/1100x500" alt=""/>
               <Carousel.Caption>
                 <h3>{book.name}</h3>
                 <p>{book.description}</p>
