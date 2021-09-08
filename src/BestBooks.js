@@ -5,6 +5,7 @@ import './BestBooks.css';
 import axios from 'axios';
 import { withAuth0 } from "@auth0/auth0-react";
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
 class MyFavoriteBooks extends React.Component {
   constructor(props){
     super(props);
@@ -18,7 +19,7 @@ class MyFavoriteBooks extends React.Component {
       const jwt = tokenRes.__raw;
       console.log(jwt);
       const { user } = this.props.auth0;
-      return axios.get(`http://localhost:3000/books`,
+      return axios.get(`${backendURL}`,
       {
         params: {email: user.email},
         headers: {"Authorization" : `Bearer ${jwt}`}
