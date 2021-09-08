@@ -1,5 +1,6 @@
 import React from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
+import Carousel from 'react-bootstrap/Carousel';
 import './BestBooks.css';
 import axios from 'axios';
 import { withAuth0 } from "@auth0/auth0-react";
@@ -40,9 +41,19 @@ class MyFavoriteBooks extends React.Component {
           This is a collection of my favorite books
         </p>
       </Jumbotron>
-      <div>
-        {this.state.books.length > 0 ? this.state.books.map(book => (<p key={book._id}>{book.name} <br/> {book.description} </p>)) : <p>'No books to display'</p>}
-      </div>
+      <Carousel>
+        { this.state.books.length > 0 
+          ? this.state.books.map(book => (
+            <Carousel.Item key={book._id}>
+              <img src="https://via.placeholder.com/1100x500" />
+              <Carousel.Caption>
+                <h3>{book.name}</h3>
+                <p>{book.description}</p>
+              </Carousel.Caption> 
+            </Carousel.Item>)) 
+          : <p>'No books to display'</p> 
+        }
+      </Carousel>
       </>
     );
   }
