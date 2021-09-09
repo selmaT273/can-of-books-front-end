@@ -19,7 +19,7 @@ class MyFavoriteBooks extends React.Component {
       const jwt = tokenRes.__raw;
       console.log(jwt);
       const { user } = this.props.auth0;
-      return axios.get(`${backendURL}`,
+      return axios.get(`${backendURL}/books`,
       {
         params: {email: user.email},
         headers: {"Authorization" : `Bearer ${jwt}`}
@@ -27,12 +27,13 @@ class MyFavoriteBooks extends React.Component {
     })
     .then(bookResponseData => {
       this.setState({
-        books: bookResponseData.data[0].books,
+        books: bookResponseData,
       })
       console.log('this is books state', this.state.books);
     })
     .catch(err => console.log(err.message));
   }
+  
   render() {
     return(
       <>
@@ -43,7 +44,7 @@ class MyFavoriteBooks extends React.Component {
         </p>
       </Jumbotron>
       <Carousel>
-        { this.state.books.length > 0 
+        { this.state.books.length > 0
           ? this.state.books.map(book => (
             <Carousel.Item key={book._id}>
               <img src="https://via.placeholder.com/1100x500" alt=""/>
